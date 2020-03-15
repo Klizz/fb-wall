@@ -1,7 +1,4 @@
-export default io => socket => {
-
-  const states = [];
-
+export default (io, states) => socket => {
   function clock() {
     let today = new Date();
     let h = today.getHours();
@@ -17,15 +14,18 @@ export default io => socket => {
   }
 
   socket.on("sendState", (user, text) => {
-    const data = {
+    states.push({
       time: clock(),
       user,
       text,
       id: socket.id
-    };
-    states.push(data);
+    });
+    io.emit("broadcastState", states);
+  });
+
+  socket.on("getStates", (user, text) => {
     console.log(states);
-    io.emit("broadcastState", data);
+    io.emit("broadcastState", states);
   });
 
   socket.on('updateUser', (user) => {
