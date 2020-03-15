@@ -7,7 +7,7 @@ export default socketClient => {
   const statesList = document.getElementById("states-list");
 
   sendState.addEventListener("click", () => {
-    if (stateText.value.length > 0) {
+    if (stateText.value.length > 0 && stateUser.disabled == true) {
       socketClient.emit("sendState", stateUser.value, stateText.value);
     }
   });
@@ -20,8 +20,10 @@ export default socketClient => {
     stateUser.disabled = true;
   });
 
-  const sendLike = id => {
-    console.log(id);
+  const sendLike = likes => {
+    document.getElementById('likeBTN').disabled= true;
+    likes ++
+    socketClient.emit("likeState")
   };
 
   socketClient.emit("getStates", stateUser.value, stateText.value);

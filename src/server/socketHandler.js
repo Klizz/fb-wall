@@ -18,13 +18,19 @@ export default (io, states) => socket => {
       time: clock(),
       user,
       text,
+      likes: 0,
       id: socket.id
     });
     io.emit("broadcastState", states);
   });
 
+  socket.on('sendLike', like => {
+    const currentState = states.find(i => i.text === like.message);
+    currentState.likes += 1;
+    io.emit('broadcastState', states);
+  });
+
   socket.on("getStates", (user, text) => {
-    console.log(states);
     io.emit("broadcastState", states);
   });
 
