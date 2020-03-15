@@ -1,17 +1,18 @@
 import http from 'http';
 import express from 'express';
 import socketio from 'socket.io';
-import socketHandler from './src/server/socketHandler'
+import socketHandler from './src/server/socketHandler';
+import bodyParser from 'body-parser';
 
 const APP = express();
 const SERVER = http.createServer(APP);
 
-const activeUsers = [];
-const messages = [];
+const states = [];
 
 APP.use(express.static('dist'));
 APP.set('views', './src/server/views');
 APP.set('view engine', 'pug');
+APP.use(bodyParser.json());
 
 const io = socketio(SERVER);
 

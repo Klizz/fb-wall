@@ -1,5 +1,7 @@
 export default io => socket => {
 
+  const states = [];
+
   function clock() {
     let today = new Date();
     let h = today.getHours();
@@ -21,8 +23,16 @@ export default io => socket => {
       text,
       id: socket.id
     };
-    console.log(data)
+    states.push(data);
+    console.log(states);
     io.emit("broadcastState", data);
   });
 
+  socket.on('updateUser', (user) => {
+    const userName = {
+      user,
+      id: socket.id
+    }
+    io.emit('broadcastUser', userName);
+  });
 };

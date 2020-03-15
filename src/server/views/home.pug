@@ -6,8 +6,12 @@ html
   body
   div.container
     h1 Home
+    h3 Usuario:
+    div#user
     div#new-state
       input#state-username(placeholder="Nombre de usuario")
+      button#update-user Actualizar nombre
+      br
       textarea#state-text(placeholder="Que estas pensando")
       button#send-state Enviar
     div#states.alert.alert-dark
