@@ -6,6 +6,9 @@ import socketHandler from './src/server/socketHandler'
 const APP = express();
 const SERVER = http.createServer(APP);
 
+const activeUsers = [];
+const messages = [];
+
 APP.use(express.static('dist'));
 APP.set('views', './src/server/views');
 APP.set('view engine', 'pug');
