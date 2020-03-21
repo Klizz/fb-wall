@@ -20,10 +20,9 @@ export default socketClient => {
     stateUser.disabled = true;
   });
 
-  const sendLike = likes => {
-    document.getElementById('likeBTN').disabled= true;
-    likes ++
-    socketClient.emit("likeState")
+  const sendLike = text => {
+    const like = { message: text };
+    socketClient.emit('sendLike', like);
   };
 
   socketClient.emit("getStates", stateUser.value, stateText.value);

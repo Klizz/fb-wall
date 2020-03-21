@@ -1,0 +1,22 @@
+-- BD DE USUARIOS
+CREATE DATABASE db_users;
+USE db_users;
+CREATE TABLE users (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    username VARCHAR(20) NOT NULL,
+    password VARCHAR(60) NOT NULL
+);
+DESCRIBE users;
+
+-- BD DE POSTS
+CREATE DATABASE db_posts;
+USE db_posts;
+CREATE TABLE posts (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    text TEXT NOT NULL,
+    username VARCHAR(60) NOT NULL,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    likes INT(5),
+    status TINYINT(1)
+);
+DESCRIBE posts;

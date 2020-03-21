@@ -24,21 +24,20 @@ export default (io, states) => socket => {
     io.emit("broadcastState", states);
   });
 
-  socket.on('sendLike', like => {
-    const currentState = states.find(i => i.text === like.message);
-    currentState.likes += 1;
-    io.emit('broadcastState', states);
-  });
-
-  socket.on("getStates", (user, text) => {
+  socket.on("sendLike", like => {
+    const currentState = states.find(i => i.likes === like.message);
     io.emit("broadcastState", states);
   });
 
-  socket.on('updateUser', (user) => {
+  socket.on("getStates", () => {
+    io.emit("broadcastState", states);
+  });
+
+  socket.on("updateUser", user => {
     const userName = {
       user,
       id: socket.id
-    }
-    io.emit('broadcastUser', userName);
+    };
+    io.emit("broadcastUser", userName);
   });
 };
