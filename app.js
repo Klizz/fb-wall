@@ -17,6 +17,10 @@ APP.set('view engine', 'pug');
 APP.use(bodyParser.json());
 APP.use(morgan('dev'));
 
+// RUTAS
+APP.use(require('./src/routes/auth.js'));
+APP.use(require('./src/routes/states.js'));
+
 // GLOBAL VARIABLES
 const states = [];
 
@@ -24,10 +28,6 @@ const states = [];
 const io = socketio(SERVER);
 io.set('transports', ['websocket', 'polling']);
 io.on('connection', socketHandler(io, states));
-
-APP.get('/', (req, res) => {
-  res.render("home");
-});
 
 
 // SERVER

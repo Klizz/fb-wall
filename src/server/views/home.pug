@@ -2,7 +2,8 @@ html
   head
     title The facebook
     meta(name="viewport", content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width")
-    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
   body
   div.container
     h1 Home
@@ -10,10 +11,13 @@ html
     div#user
     div#new-state
       input#state-username(placeholder="Nombre de usuario")
-      button#update-user Actualizar nombre
+      button#update-user.btn.waves-effect.waves-light Actualizar nombre
       br
-      textarea#state-text(placeholder="Que estas pensando")
-      button#send-state Enviar
+      textarea#state-text(placeholder="Que estas pensando").materialize-textarea
+      button#send-state.btn.waves-effect.waves-light Enviar estado
+    br
     div#states-list
+    br
+    br
     script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js")
     script(src="./js/main.js")
