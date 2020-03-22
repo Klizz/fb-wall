@@ -1,3 +1,4 @@
+const pool = require('./database');
 export default (io, states) => socket => {
   function clock() {
     let today = new Date();
@@ -21,6 +22,18 @@ export default (io, states) => socket => {
       likes: 0,
       id: socket.id
     });
+    async (text, username, createdAt, likes, status, done) => {
+      let newPost = {
+        id,
+        text,
+        username,
+        createdAt,
+        likes,
+        status
+      };
+      const result = await pool.query("INSERT INTO posts SET ? ", newPost);
+      return done(null, newPost);
+    }
     io.emit("broadcastState", states);
   });
 

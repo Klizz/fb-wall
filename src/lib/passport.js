@@ -4,6 +4,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const pool = require("../server/database");
 const helpers = require("./helpers");
 
+
 passport.use(
   "local.login",
   new LocalStrategy(
@@ -13,7 +14,7 @@ passport.use(
       passReqToCallback: true
     },
     async (req, username, password, done) => {
-      const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+      const rows = await pool.query('SELECT * FROM user WHERE username = ?', [username]);
       if (rows.length > 0) {
         const user = rows[0];
         const validation = await helpers.matchPassword(password, user.password);
@@ -58,6 +59,6 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const rows = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
+  const rows = pool.query("SELECT * FROM users WHERE id = ?", [id]);
   done(null, rows[0]);
 });

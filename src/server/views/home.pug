@@ -5,6 +5,22 @@ html
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
     link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
   body
+  nav
+            div(class="nav-wrapper black") 
+               a.brand-logo(href='/') Home
+               ul#nav-mobile.right.hide-on-med-and-down
+                 li
+                   a(href='/login')
+                     | Ingresar
+                 li
+                   a(href='/')
+                     | Registrarse
+                 li
+                   a(href='/posts')
+                     | Posts
+                 li
+                   a(href='/logout')
+                     | Logout
   div.container
     h1 Home
     h3 Bienvenido 
