@@ -5,17 +5,22 @@ import socketio from 'socket.io';
 import socketHandler from './src/server/socketHandler';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import passport from 'passport';
 
 dotenv.config();
 
 const APP = express();
 const SERVER = http.createServer(APP);
 
+require('./src/lib/passport');
+
 APP.use(express.static('dist'));
 APP.set('views', './src/server/views');
 APP.set('view engine', 'pug');
-APP.use(bodyParser.json());
 APP.use(morgan('dev'));
+APP.use(bodyParser.urlencoded({extended: true}));
+APP.use(passport.initialize());
+APP.use(passport.session());
 
 // RUTAS
 APP.use(require('./src/routes/auth.js'));

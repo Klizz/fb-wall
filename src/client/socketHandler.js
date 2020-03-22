@@ -15,7 +15,7 @@ export default (socketClient, ui) => {
         id="likeBTN" onClick="window.ui.sendLike('${message.id}')">
         <i class="material-icons">favorite</i>
         </button>
-        <span style="padding-left:30px;">${ message.likes }</span>
+        <span style="padding-left:30px;">${ message.likes } likes</span>
       </div>`;
       })
       ui.statesList.innerHTML = list;
