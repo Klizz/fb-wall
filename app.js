@@ -27,13 +27,17 @@ APP.use(require('./src/routes/auth.js'));
 APP.use(require('./src/routes/states.js'));
 
 // GLOBAL VARIABLES
+APP.use((req, res, next) => {
+    APP.locals.user = req.user;
+    next();
+});
+
 const states = [];
 
 // SOCKET CONFIG
 const io = socketio(SERVER);
 io.set('transports', ['websocket', 'polling']);
 io.on('connection', socketHandler(io, states));
-
 
 // SERVER
 SERVER.listen(5000);
