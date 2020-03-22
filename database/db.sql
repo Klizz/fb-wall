@@ -1,12 +1,12 @@
 -- BD DE USUARIOS
 CREATE DATABASE db_users;
 USE db_users;
-CREATE TABLE users (
+CREATE TABLE user (
     id INT(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(20) NOT NULL,
-    password VARCHAR(60) NOT NULL
+    password VARCHAR(70) NOT NULL
 );
-DESCRIBE users;
+DESCRIBE user;
 
 -- BD DE POSTS
 CREATE DATABASE db_posts;

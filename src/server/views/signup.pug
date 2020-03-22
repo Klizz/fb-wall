@@ -7,13 +7,15 @@ html
   div.container
     div.form-group
     h1 Registro
-    form(action="/signup" method="POST")
+    form(action="/" method="POST")
       div#login-form
       input.form-control(placeholder="Nombre de usuario" name="user")
       label(for="user") Ingresa tu nombre de usuario
       br
       input.form-control(placeholder="Contraseña" type="password" name="password")
       label(for="password") Ingresa tu contraseña
+      br
+      a(href="/login") Ya tengo cuenta
       br
       br
       button#login-btn.btn.btn-primary Enviar
